@@ -6,3 +6,10 @@ Ranges
 Exaustive when
     sealed classes
     enums
+
+
+typealias
+lambda, anon function
+callable ref:  ::f1
+
+Generics (aka type parameters,  aka templates)

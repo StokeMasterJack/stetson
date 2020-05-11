@@ -10,8 +10,7 @@ class Hand(val cards:MutableList<Card> = mutableListOf()) {
         return p
     }
 
-
-    val points:Int get() = cards.sumBy { it.points }
+    val points get() = cards.sumBy { it.points }
 
 
 }
