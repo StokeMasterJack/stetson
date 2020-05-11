@@ -2,28 +2,32 @@ package ss.app1.model
 
 class Game(shuffle: Boolean = true) {
 
+    private var deck = Deck(shuffle = shuffle)
 
-    var deck = Deck(shuffle = shuffle)
-
-    var ph: Hand = Hand()
-    var dh: Hand = Hand()
+    private var phi: Hand = Hand()
+    private var dhi: Hand = Hand()
 
     init {
         deal()
     }
 
     fun hit() {
-        ph = ph.add(deck.takeCard())
+        phi = phi.add(deck.takeCard())
     }
 
     fun stay() {
-        while (dh.points <= 17) {
-            dh = dh.add(deck.takeCard())
+        while (dhi.points <= 17) {
+            dhi = dhi.add(deck.takeCard())
         }
     }
 
     fun deal() {
-        ph = Hand().add(deck.takeCards(2))
-        dh = Hand().add(deck.takeCards(2))
+        phi = Hand().add(deck.takeCards(2))
+        dhi = Hand().add(deck.takeCards(2))
     }
+
+    val ph:Hand get() = phi
+    val dh:Hand get() = dhi
+
+
 }

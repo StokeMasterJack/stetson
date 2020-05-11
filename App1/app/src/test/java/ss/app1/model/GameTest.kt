@@ -35,14 +35,12 @@ class GameTest {
         assertEquals(3,g1.ph.points)  //a,2
         assertEquals(7,g1.dh.points)  //3,4
 
-
         g1.hit()
         assertEquals(3,g1.ph.size)  //a,2
         assertEquals(2,g1.dh.size)  //3,4
 
         assertEquals(8,g1.ph.points)  //a,2,5
         assertEquals(7,g1.dh.points)  //3,4
-
 
         g1.stay()
         assertEquals(3,g1.ph.size)  //a,2
