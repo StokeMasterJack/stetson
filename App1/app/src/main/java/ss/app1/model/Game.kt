@@ -2,7 +2,7 @@ package ss.app1.model
 
 class Game(shuffle: Boolean = true) {
 
-    private var deck = Deck(shuffle = shuffle)
+    private val deck = Deck(shuffle = shuffle)
 
     private var phi: Hand = Hand()
     private var dhi: Hand = Hand()
