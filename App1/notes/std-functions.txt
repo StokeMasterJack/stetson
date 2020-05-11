@@ -1,0 +1,19 @@
+
+
+//apply
+val d1 = Deck()
+
+val d2 = deck.apply {
+    //this:deck
+    //returns:this
+      if(sh) deck.shuffle()
+   }
+
+assert(d1 == d2)
+assert(d1 === d2)
+
+val d2 = deck.run {
+    //this:deck
+    //returns:what the lambda returns
+    if(sh) deck.shuffled() deck
+}

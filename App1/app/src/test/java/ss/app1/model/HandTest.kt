@@ -6,20 +6,19 @@ import org.junit.Test
 class HandTest {
 
     @Test
-    fun cardValueSuit() {
-
-
-    }
-
-
-    @Test
     fun getPoints() {
         val h1 = Hand()
-        assertEquals(0,h1.points)
+        assertEquals(0, h1.points)
 
-//        h1.add(Card(value = 1,suit = 1))
-//        h1.add(Card(value = 13,suit = 4))
+        val h2 = h1.add(Card(value = 1, suit = 1))
+        val h3 = h2.add(Card(value = 13, suit = 4))
 
-//        assertEquals(11,h1.points)
+        assertEquals(11, h3.points)
+
+        h1.cards.forEach {
+            println(it.name)
+        }
+
+
     }
 }

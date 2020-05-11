@@ -31,9 +31,16 @@ fun <T> profile(f: () -> T): T {
     return retVal
 }
 
-fun ass(test:Boolean,errorMessage:String){
-    if(!test){
+fun assLame(test: Boolean, errorMessage: String) {
+    if (!test) {
         throw IllegalArgumentException(errorMessage)
+    }
+}
+
+fun ass(test: Boolean, errorMessage: () -> String) {
+    if (!test) {
+        val s = errorMessage()
+        throw IllegalArgumentException(s)
     }
 }
 
@@ -47,23 +54,24 @@ class LambdaTest {
 
 
         profile { doStuff() }  //333ms
-        profile  { computeStuff(5) }    //333ms
-        profile  { computeStr(5) }    //333ms
+        profile { computeStuff(5) }    //333ms
+        profile { computeStr(5) }    //333ms
 
-        ass(3 < 10,"Bad value")
+//        ass(3 < 10,"Bad value")
+        ass(3 < 10) { "Bad value" }
 
         try {
-            ass(10 < 3,"Bad value")
+//            ass(10 < 3,"Bad value")
+            ass(10 < 3) { "Bad value" }
             fail()
-        }
-        catch (e:IllegalArgumentException){
+        } catch (e: IllegalArgumentException) {
             //ok
         }
 
     }
 
 
-    fun doStuff():Unit {
+    fun doStuff(): Unit {
         println("stuff")
     }
 
@@ -71,16 +79,18 @@ class LambdaTest {
         println("computeStuff")
         return x * x
     }
+
     fun computeStr(x: Int): String {
         println("computeStuff")
         return "Result:  ${x * x}"
     }
-    val computeStuff2:(Int)->Int = { it:Int ->
+
+    val computeStuff2: (Int) -> Int = { it: Int ->
         it * it
     }
 
 
-    val computeStuff3:(Int)->Int = { it * it }
+    val computeStuff3: (Int) -> Int = { it * it }
 
 
 }

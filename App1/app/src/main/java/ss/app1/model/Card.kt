@@ -61,7 +61,9 @@ data class Card(val value: Int, val suit: Int) {
             }
         }
 
-    val name get() = "$valueName or $suitName"
+    val name get() = "$valueName of $suitName"
+
+
 
 
 //    val name  = "$valueName or $suitName"

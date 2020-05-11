@@ -1,16 +1,12 @@
 package ss.app1.model
 
-class Hand(val cards:MutableList<Card> = mutableListOf()) {
+//immutable
+class Hand private constructor(val cards: List<Card>) {
 
-    val points3:Int get() {
-        var p = 0
-        for (card in cards) {
-            p+=card.points
-        }
-        return p
-    }
+    constructor() : this(listOf())
+
+    fun add(card: Card): Hand = Hand(cards + card)
 
     val points get() = cards.sumBy { it.points }
-
 
 }
