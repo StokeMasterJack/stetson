@@ -1,0 +1,3 @@
+assert()   //does away,  throws: AssertionError
+require()  //stay,  throws: IllegalArgumentEx
+check()    //stay,  throws: IllegalStateEx

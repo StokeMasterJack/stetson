@@ -1,0 +1,34 @@
+
+
+int z = if(x>10){
+
+
+}else{
+
+}
+
+int z = x > 10?44:33
+
+in kotlin: if and when are expressions
+
+sealed class Shape
+class Square:Shape
+class Circle:Shape
+class Tri:Shape
+
+when(shape){
+    is Square->
+    is Circle->
+
+}
+
+
+when(enum){
+
+
+
+    is Suit.Spades->
+    is Suit.Hearts->
+    is Suit.Spades->
+    is Suit.Spades->
+}

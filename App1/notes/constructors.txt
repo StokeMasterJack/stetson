@@ -1,0 +1,15 @@
+
+
+primary:
+  data class Card(val value:Int,val suit:Int)
+
+secondary:
+  constructor(index:Int):this(index % 13 + 1,index / 13 + 1){
+
+
+  }
+
+
+props vs const args
+    class Card(value:Int, suit:Int)
+    class Card(val value:Int,val suit:Int)

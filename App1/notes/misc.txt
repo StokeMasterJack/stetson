@@ -1,0 +1,8 @@
+Ranges
+    val valueRange = IntRange(start = 1, endInclusive = 13)
+    val valueRange = 1..13
+
+
+Exaustive when
+    sealed classes
+    enums

@@ -1,0 +1,12 @@
+data
+
+For free:
+
+toString
+equals
+hashCode
+Destructure
+copy
+
+
+//val (v,s) = c1
