@@ -43,6 +43,7 @@ class GameTest {
         assertEquals(8,g1.ph.points)  //a,2,5
         assertEquals(7,g1.dh.points)  //3,4
 
+
         g1.stay()
         assertEquals(3,g1.ph.size)  //a,2
         assertEquals(4,g1.dh.size)  //3,4
@@ -56,6 +57,5 @@ class GameTest {
 
         assertEquals(17,g1.ph.points)  //a,2,5
         assertEquals(20,g1.dh.points)  //3,4, 6,7
-
     }
 }

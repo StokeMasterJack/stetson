@@ -22,8 +22,10 @@ class DeckTest {
         println(d1.shuffle)
 
         println(d1.cards.size)
-
-        val (c3,c4) = d1.takeCards(2)
+        val cc = d1.takeCards(2)
+        assertEquals(2,cc.size)
+        val (c3,c4) = cc
+        assertEquals(48,d1.size)
 
         assertEquals("3 of Spades",c3.name)
         assertEquals("4 of Spades",c4.name)
