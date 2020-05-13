@@ -36,6 +36,7 @@ sealed class BjAction
     object Deal:BjAction
     data class Login(val userName:String,val pw:String):BjAction
     data class FieldChange(val fld,val newVal)
+    data class Jobs(val fld,val newVal)
 
 BjAction: actions go up the tree
 Game: data + action callbacks goes down (model objects): these should immutable

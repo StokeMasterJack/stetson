@@ -11,43 +11,19 @@ class Deck private constructor(
             .toMutableList()
     )
 
-    init {
-//        (1..13).forEach { v ->
-//            (1..4).forEach { s ->
-//                val c = Card(v, s)
-//                cardsMutable.add(c)
-//            }
-//        }
-
-//        for (v in (1..13)) {
-//            for (s in (1..4)) {
-//                val c = Card(v, s)
-//                cardsMutable.add(c)
-//            }
-//        }
-
-
-//        val list2 = (0..51).map { Card(it) }.run { if(shuffle) shuffled() else this  }
-//
-//        val list3 = if(shuffle){
-//            list2.shuffled()
-//        }else{
-//            list2
-//        }
-//
-//        val list4 = list3.toMutableList()
-
-
-//        val list2 = (0..51).map(::Card)
-    }
-
-
     fun takeCard(): Card = takeCards(1)[0]
 
     fun takeCards(n: Int): List<Card> {
         val ret: List<Card> = cardsMutable.take(n)
         repeat(n) { cardsMutable.removeAt(0) }
         return ret
+    }
+
+    fun copy(): Deck {
+        return Deck(
+            shuffle = shuffle,
+            cardsMutable = ArrayList(cardsMutable)
+        )
     }
 
     val size: Int get() = cardsMutable.size

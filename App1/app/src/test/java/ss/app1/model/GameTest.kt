@@ -89,4 +89,35 @@ class GameTest {
         assertEquals(Game.pressHitOrStay, g1Copy.msg)
 
     }
+
+    @Test
+    fun test() {
+        val g1 = Game(sh = false)
+        assertEquals(2,g1.ph.size)  //a,2
+        assertEquals(2,g1.dh.size)  //3,4
+
+        assertEquals(3,g1.ph.points)  //a,2
+        assertEquals(7,g1.dh.points)  //3,4
+
+        assertFalse(g1.isStay)
+        assertFalse(g1.isGameOver)
+        assertEquals(Game.pressHitOrStay, g1.msg)
+
+        val g2 = g1.copy()
+        g2.hit()
+
+        assertEquals(3,g2.ph.size)  //a,2
+        assertEquals(2,g2.dh.size)  //3,4
+
+        assertFalse(g2.isStay)
+        assertFalse(g2.isGameOver)
+        assertEquals(Game.pressHitOrStay, g1.msg)
+
+        assertEquals(8,g2.ph.points)  //a,2,5
+        assertEquals(7,g2.dh.points)  //3,4
+
+        assertFalse(g2.isStay)
+        assertFalse(g2.isGameOver)
+        assertEquals(Game.pressHitOrStay, g2.msg)
+    }
 }

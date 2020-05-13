@@ -17,6 +17,15 @@ data class Game private constructor(
 //        deal()
 //    }
 
+    fun copy(): Game {
+        return Game(
+            shuffle = shuffle,
+            deck = deck.copy(),
+            phi = phi,
+            dhi = dhi,
+            isStayInternal = isStayInternal
+        )
+    }
 
     fun hit() {
         phi = phi.add(deck.takeCard())
