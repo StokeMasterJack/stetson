@@ -1,6 +1,9 @@
 package ss.app1.model
 
+import androidx.compose.Immutable
+
 //immutable
+@Immutable
 data class Card(val value: Int, val suit: Int) {
 
     init {
@@ -64,10 +67,11 @@ data class Card(val value: Int, val suit: Int) {
     val name get() = "$valueName of $suitName"
 
 
-
+    fun deleteHardDrive() {
+        println("deleteHardDrive")
+    }
 
 //    val name  = "$valueName or $suitName"
-
 
 
 }

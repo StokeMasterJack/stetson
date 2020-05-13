@@ -1,0 +1,10 @@
+
+?:   (elvis)
+?.
+!! nul assertion operator
+
+val xx:String = maybeNull ?: "Foo"
+
+
+
+val xx:String = maybeNull?.foo

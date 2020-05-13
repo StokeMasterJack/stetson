@@ -4,10 +4,10 @@ class Game(shuffle: Boolean = true) {
 
     private val deck = Deck(shuffle = shuffle)
 
-    private var phi: Hand = Hand()
-    private var dhi: Hand = Hand()
+    private var phi: Hand = Hand(name = "Player")
+    private var dhi: Hand = Hand(name = "Dealer")
 
-    private var isStayInternal:Boolean = false
+    private var isStayInternal: Boolean = false
 
     init {
         deal()
@@ -25,13 +25,13 @@ class Game(shuffle: Boolean = true) {
     }
 
     fun deal() {
-        phi = Hand().add(deck.takeCards(2))
-        dhi = Hand().add(deck.takeCards(2))
+        phi = Hand(phi.name).add(deck.takeCards(2))
+        dhi = Hand(dhi.name).add(deck.takeCards(2))
         isStayInternal = false
     }
 
-    val ph:Hand get() = phi
-    val dh:Hand get() = dhi
+    val ph: Hand get() = phi
+    val dh: Hand get() = dhi
 
     val isGameOver: Boolean get() = isStayInternal || ph.points >= 21
 
@@ -49,14 +49,12 @@ class Game(shuffle: Boolean = true) {
             pressHitOrStay
         }
 
-    val isStay:Boolean get() = isStayInternal
+    val isStay: Boolean get() = isStayInternal
 
 
     companion object {
         const val pressHitOrStay = "Press Hit or Stay"
         const val dealerWins = "Dealer Wins!"
         const val playerWins = "Player Wins!"
-
-
     }
 }

@@ -1,0 +1,38 @@
+<html>
+    <div>
+        <div>
+            Doo
+        </div>
+        <span>
+            Foo
+        </span>
+        <div>
+            Zoo
+        </div>
+    </div>
+</html>
+
+
+<!--UI languages-->
+<!--JSP-->
+<!--FreeMarker-->
+<!--Angular-->
+<!--saas: css: var, functions, loops, branches, modularity,-->
+
+<!--/*-->
+<!--looping and branching-->
+<!--reusable ui snippets-->
+<!--    pass params into your reusable snippets-->
+<!--    //tld: type system-->
+
+<!--*/-->
+
+<!--//javascript-->
+<!--//Angular-->
+<!--//saas-->
+
+<!--&lt;!&ndash;DV: Declartive Views patters&ndash;&gt;-->
+<!--Android JetPack-->
+<!--Flutter-->
+<!--Swift-->
+React
