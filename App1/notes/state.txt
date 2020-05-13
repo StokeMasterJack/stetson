@@ -1,0 +1,57 @@
+
+
+fun reducer(state:Game,action:BjAction):Game{
+
+
+}
+
+
+f1(x)
+    f2(x)
+    f3(x)
+    f4(x)
+        f5(x)
+        f6(x)
+            f7(x)
+                f8(x)
+                f8(x)
+                f8(x)
+                f8(x)
+
+
+
+args/ambient
+state: what changes upon an event
+
+unidirectional data flow
+    state should be maintained at or near the top of your tree
+        which is, in turn, passed down to lower widgets as args
+        those args are (or should be) immutable as far as the lower widgets
+
+enum BjAction(Hit,Deal,Stay)
+
+sealed class BjAction
+    object Hit:BjAction
+    object Stay:BjAction
+    object Deal:BjAction
+    data class Login(val userName:String,val pw:String):BjAction
+    data class FieldChange(val fld,val newVal)
+
+BjAction: actions go up the tree
+Game: data + action callbacks goes down (model objects): these should immutable
+
+FooVu(g,onHit,onDeal,onStay)
+FooVu(g,onAction)
+
+a common name for onAction: dispatch
+
+Reducer Pattern
+
+MVC:
+    M: Game
+    C: GameController
+    v: GameVu
+
+
+
+

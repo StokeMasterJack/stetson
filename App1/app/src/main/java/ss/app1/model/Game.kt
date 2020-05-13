@@ -1,17 +1,22 @@
 package ss.app1.model
 
-class Game(shuffle: Boolean = true) {
-
-    private val deck = Deck(shuffle = shuffle)
-
-    private var phi: Hand = Hand(name = "Player")
-    private var dhi: Hand = Hand(name = "Dealer")
-
+@Suppress("DataClassPrivateConstructor")
+data class Game private constructor(
+    val shuffle: Boolean = true,
+    private val deck: Deck = Deck(shuffle = shuffle),
+    private var phi: Hand = Hand(name = "Player"),
+    private var dhi: Hand = Hand(name = "Dealer"),
     private var isStayInternal: Boolean = false
+) {
 
-    init {
+    constructor(sh: Boolean = true) : this(shuffle = sh) {
         deal()
     }
+
+//    init {
+//        deal()
+//    }
+
 
     fun hit() {
         phi = phi.add(deck.takeCard())

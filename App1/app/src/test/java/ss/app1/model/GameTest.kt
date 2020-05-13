@@ -27,7 +27,7 @@ class GameTest {
 
     @Test
     fun game() {
-        val g1 = Game(shuffle = false)
+        val g1 = Game(sh = false)
 
         assertEquals(2,g1.ph.size)  //a,2
         assertEquals(2,g1.dh.size)  //3,4
@@ -75,6 +75,18 @@ class GameTest {
         assertFalse(g1.isStay)
         assertFalse(g1.isGameOver)
         assertEquals(Game.pressHitOrStay, g1.msg)
+
+        val g1Copy = g1.copy()
+
+        assertEquals(2,g1Copy.ph.size)  //8,9
+        assertEquals(2,g1Copy.dh.size)  //10,J
+
+        assertEquals(17,g1Copy.ph.points)  //a,2,5
+        assertEquals(20,g1Copy.dh.points)  //3,4, 6,7
+
+        assertFalse(g1Copy.isStay)
+        assertFalse(g1Copy.isGameOver)
+        assertEquals(Game.pressHitOrStay, g1Copy.msg)
 
     }
 }

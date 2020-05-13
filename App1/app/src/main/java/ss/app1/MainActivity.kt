@@ -3,6 +3,7 @@ package ss.app1
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.Composable
+import androidx.compose.state
 import androidx.ui.core.Modifier
 import androidx.ui.core.setContent
 import androidx.ui.foundation.Box
@@ -12,7 +13,8 @@ import androidx.ui.graphics.Color
 import androidx.ui.layout.Column
 import androidx.ui.layout.Row
 import androidx.ui.layout.fillMaxWidth
-import androidx.ui.layout.padding
+import androidx.ui.material.Button
+import androidx.ui.text.font.FontWeight
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 import ss.app1.model.Game
@@ -45,70 +47,105 @@ fun App() {
     val user = User("Fred")
     ProvideUser(user = user) {
         StetsonTheme {
-            GameVu()
+            GameController()
         }
     }
 }
 
+enum class BjAction { Hit, Deal, Stay }
+
+fun reducer(game: Game, action: BjAction): Game {
+    val g = game.copy()
+
+    when (action) {
+        BjAction.Hit -> g.hit()
+        BjAction.Stay -> g.stay()
+        BjAction.Deal -> g.deal()
+    }
+
+    return g
+}
+
+typealias BjDispatch = (BjAction) -> Unit
+
 @Composable
-fun GameVu(g: Game = Game()) {
+fun GameController() {
+
+    val (game, setGame) = state { Game() }
+
+    fun dispatch(action: BjAction) {
+        val newGame = reducer(game, action)
+        setGame(newGame)
+    }
+
+
+    GameVu(g = game, dispatch = ::dispatch)
+
+}
+
+@Composable
+fun ButtonBar(dispatch: BjDispatch) {
+    Row {
+        Button(onClick = { dispatch(BjAction.Deal) }) { Text("Deal") }
+        Button(onClick = { dispatch(BjAction.Hit) }) { Text("Hit") }
+        Button(onClick = { dispatch(BjAction.Stay) }) { Text("Stay") }
+    }
+}
+
+@Composable
+fun GameVu(g: Game, dispatch: BjDispatch) {
 
     val (c, t) = Theme
 
     Column(modifier = Modifier.fillMaxWidth()) {
         Box(
             modifier = Modifier.fillMaxWidth(),
-            backgroundColor = Color.Yellow
+            backgroundColor = Color.Yellow,
+            gravity =  ContentGravity.Center
         ) {
-            Text("Button Bar")
+            ButtonBar(dispatch = dispatch)
         }
         Box(modifier = Modifier.fillMaxWidth()) {
 
             Row(modifier = Modifier.fillMaxWidth()) {
                 Column(modifier = Modifier.weight(1f)) {
-                    Box(modifier = Modifier.fillMaxWidth(),
+                    Box(
+                        modifier = Modifier.fillMaxWidth(),
                         paddingStart = 10.dp,
                         paddingTop = 10.dp,
                         paddingEnd = 5.dp,
-                        paddingBottom = 10.dp){
+                        paddingBottom = 10.dp
+                    ) {
                         HandVu(h = g.ph)
                     }
                 }
                 Column(modifier = Modifier.weight(1f)) {
-                    Box(modifier = Modifier.fillMaxWidth(),
+                    Box(
+                        modifier = Modifier.fillMaxWidth(),
                         paddingStart = 5.dp,
                         paddingTop = 10.dp,
                         paddingEnd = 10.dp,
-                        paddingBottom = 10.dp) {
+                        paddingBottom = 10.dp
+                    ) {
                         HandVu(h = g.dh)
                     }
                 }
             }
 
         }
-        Box(
-            modifier = Modifier.fillMaxWidth(),
-            backgroundColor = c.primary,
-            padding = 10.dp,
-            gravity = ContentGravity.Center
-        ) {
-            Text(
-                text = g.msg,
-                style = t.h5
-            )
-        }
+        GameMsg(msg = g.msg)
     }
 }
 
 @Composable
 fun HandVu(h: Hand) {
     val (c, t) = Theme
-    Box(backgroundColor = c.secondary,padding = 10.dp,modifier = Modifier.fillMaxWidth()) {
+    Box(backgroundColor = c.secondary, padding = 10.dp, modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.fillMaxWidth()) {
             Box {
                 Text(text = h.name, style = t.h5)
             }
-            Box {
+            Box(paddingTop = 5.dp, paddingBottom = 5.dp) {
                 Column {
                     h.cards.forEach {
                         Row {
@@ -118,19 +155,46 @@ fun HandVu(h: Hand) {
                 }
             }
             Box {
-                Text(text = "${h.points} Points")
+                Text(
+                    text = "${h.points} Points",
+                    style = t.subtitle1.copy(fontWeight = FontWeight.Bold)
+                )
             }
-            Box {
-                Text(UserAmbient.current.userName)
-            }
+
         }
 
     }
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun GameMsg(msg: String) {
+    val (c, t) = Theme
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Box(
+            modifier = Modifier.fillMaxWidth(),
+            backgroundColor = c.primary,
+            paddingTop = 5.dp,
+            paddingBottom = 2.dp,
+            gravity = ContentGravity.Center
+        ) {
+
+            Text(
+                text = msg,
+                style = t.h5
+            )
+
+        }
+        Box(
+            modifier = Modifier.fillMaxWidth(),
+            backgroundColor = c.primary,
+            paddingBottom = 5.dp,
+            paddingTop = 2.dp,
+            gravity = ContentGravity.Center
+        ) {
+            Text(UserAmbient.current.userName)
+        }
+
+    }
 }
 
 @Preview
