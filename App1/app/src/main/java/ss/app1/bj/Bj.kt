@@ -13,6 +13,8 @@ import androidx.ui.material.Button
 import androidx.ui.text.font.FontWeight
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
+import ss.app1.AppScaffold
+import ss.app1.TabKey
 import ss.app1.UserAmbient
 import ss.app1.model.Game
 import ss.app1.model.Hand
@@ -36,6 +38,17 @@ fun reducer(game: Game, action: BjAction): Game {
 }
 
 typealias BjDispatch = (BjAction) -> Unit
+
+
+@Composable
+fun BlackjackPage(page: TabKey, setPage: (TabKey) -> Unit) {
+    val (c, t) = Theme
+    AppScaffold(page = page, setPage = setPage) {
+        GameController()
+    }
+}
+
+
 
 @Composable
 fun GameController() {

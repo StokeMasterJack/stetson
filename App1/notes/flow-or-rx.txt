@@ -1,0 +1,13 @@
+
+
+like a python generator
+Sequence: yield
+Flow: emit
+
+flows model a subscriber-like-thing as a list
+
+    map
+    total
+    debounce
+    dedup
+    take(3)

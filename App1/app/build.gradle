@@ -57,7 +57,21 @@ dependencies {
     implementation "androidx.ui:ui-layout:${compose_version}"
     implementation "androidx.ui:ui-material:${compose_version}"
     implementation "androidx.ui:ui-tooling:${compose_version}"
+    implementation("androidx.ui:ui-platform:${compose_version}")
+    implementation("androidx.ui:ui-livedata:${compose_version}")
 
+    implementation("com.squareup.retrofit2:retrofit:2.8.1") //okhttp
+    implementation("com.squareup.retrofit2:converter-gson:2.8.1")
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0")
+    implementation("androidx.core:core-ktx:1.2.0")
+    implementation("androidx.activity:activity-ktx:1.1.0")
+
+//    kapt("androidx.lifecycle:lifecycle-compiler:2.2.0")
+
+    implementation("androidx.preference:preference-ktx:1.1.1")
 
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

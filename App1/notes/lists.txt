@@ -1,0 +1,5 @@
+
+
+1:  1 to 100:     nothing special: VerticalScroller
+2:  100 to 1000:  lazy rendering
+3:  1000+:        lazy loading
